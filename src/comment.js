@@ -29,5 +29,13 @@ export default class Comment {
     return p;
   }
 
-
+  static async loadComments(item_id = 'item1') {
+    const div = document.createElement('div');
+    await Api.getComments(item_id);
+    Api.data.forEach((obj) => {
+      console.log(obj);
+      div.append(Comment.createComment(obj));
+    });
+    return div;
+  }
 }
