@@ -9,6 +9,17 @@ export default class Api {
 
   static commentsUrl = `${Api.baseUrl}comments`;
 
+  static async postComment(obj) {
+    const commentUrl = `${Api.commentsUrl}`;
+    await axios.post(commentUrl, obj);
+  }
+
+  static async getComments(id) {
+    const commentUrl = `${Api.commentsUrl}?item_id=${id}`;
+    const result = await axios.get(commentUrl);
+    Api.commentsData = result.data;
+  }
+
   static createApp() {
     const request = new XMLHttpRequest();
     request.open('POST', `${Api.baseUrl}apps/`, true);
@@ -18,17 +29,5 @@ export default class Api {
       }
     };
     request.send();
-  }
-
-  static async postComment(obj) {
-    const commentUrl = `${Api.commentsUrl}`;
-    await axios.post(commentUrl, obj)
-      .then((result) => result);
-  }
-
-  static async getComments(id) {
-    const commentUrl = `${Api.commentsUrl}?item_id=${id}`;
-    const result = await axios.get(commentUrl);
-    Api.commentsData = result.data;
   }
 }

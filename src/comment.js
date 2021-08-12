@@ -6,6 +6,7 @@ export default class Comment {
     const usernameInput = document.createElement('input');
     const commentInput = document.createElement('input');
     const commentBtn = document.createElement('button');
+    commentBtn.classList.add('red');
     usernameInput.type = 'text';
     commentInput.type = 'text';
     commentBtn.innerHTML = 'Comment';
