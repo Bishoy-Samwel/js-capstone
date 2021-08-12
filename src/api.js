@@ -5,7 +5,7 @@ export default class Api {
 
   static baseUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${Api.apiKey}/`;
 
-  static data = [];
+  static commentsData = [];
 
   static commentsUrl = `${Api.baseUrl}comments`;
 
@@ -26,9 +26,9 @@ export default class Api {
       .then((result) => result);
   }
 
-  static async getComments(name) {
-    const commentUrl = `${Api.commentsUrl}?item_id=${name}`;
+  static async getComments(id) {
+    const commentUrl = `${Api.commentsUrl}?item_id=${id}`;
     const result = await axios.get(commentUrl);
-    Api.data = result.data;
+    Api.commentsData = result.data;
   }
 }
