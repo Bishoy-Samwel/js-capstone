@@ -9,8 +9,10 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "module.exports": {
   "extends": ["airbnb-base"],
   "rules": {
+    "no-console": "off",
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",
@@ -22,6 +24,7 @@
           "peerDependencies": true
       }
   ]
+    }
   },
   "ignorePatterns": [
     "dist/",
