@@ -1,11 +1,57 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Development</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"/>
+  <link rel="stylesheet" href="./style.css" />
+  <title>Pokedex</title>
 </head>
-  <body>
-    <h1>JS capstone ...</h1>
-  </body>
+<body>
+  <main>
+    <h1 class="main-title">Pokemon</h1>
+    <div id="poke">
+		<div id="moving-container">
+				<div id="pokeball-container">
+					<div id="pokeball">
+						<div class="pokeball-details"></div>
+					</div>
+				</div>				
+			</div>
+    <div class="main-container">
+      <div class="div-score">
+        <div class="div-score-top">
+          <p class="subtitle">Pokedex</p>
+          <div class="form-group">
+            <p>Any comments or suggestions?</p>
+            <textarea
+              id="comments"
+              class="input-textarea"
+              name="comment"
+              placeholder="Enter your comment here..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" id="submit" class="btn">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+        </div>
+        <ul class="table" id="ulList"></ul>
+      </div>
+      <div class="div-inputs">
+        <p class="subtitle">Reserve your pokemon</p>
+        <form action="#" id="myForm">
+          <input type="text" name="user-name" id="userName" placeholder="Your Pokemon" required />
+          <input type="text" name="user-name" id="userName" placeholder="Your Name" required />
+          <input type="submit" class="btn" id="submitBtn" value="Reserve" />
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
 </html>
