@@ -13,4 +13,13 @@ export default class Comment {
     form.append(usernameInput, commentInput, commentBtn);
     return form;
   }
+
+  static addComment() {
+    const [inputs] = document.querySelectorAll('input');
+    const username = inputs[0];
+    const comment = inputs[1];
+    const obj = { item_id: '0', username, comment };
+    Api.postComment(obj);
+  }
+
 }
