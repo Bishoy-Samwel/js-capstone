@@ -22,4 +22,12 @@ export default class Comment {
     Api.postComment(obj);
   }
 
+  static createComment(obj) {
+    console.log(obj);
+    const p = document.createElement('p');
+    p.innerHTML = `${obj.creation_date} ${obj.username}: ${obj.comment}`;
+    return p;
+  }
+
+
 }
