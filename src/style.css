@@ -2,7 +2,6 @@ h1 {
   color: red;
 }
 
-
 @-webkit-keyframes spinning {
   0% {
     transform: rotate(-45deg);
@@ -38,7 +37,6 @@ h1 {
 }
 
 @-webkit-keyframes color-change {
-
   0%,
   20%,
   40%,
@@ -134,8 +132,7 @@ body {
   background-color: #fff;
   position: absolute;
   top: -0.65em;
-  left: 3.80em;
+  left: 3.8em;
   margin: 0 auto;
-  z-index: 250;
   -webkit-animation: color-change 3s infinite;
 }
