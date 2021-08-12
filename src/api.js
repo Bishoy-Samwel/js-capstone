@@ -6,8 +6,12 @@ export default class Api {
   static baseUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${Api.apiKey}/`;
 
   static commentsData = [];
+  
+  static reservationsData = [];
 
   static commentsUrl = `${Api.baseUrl}comments`;
+
+  static reservationUrl = `${Api.baseUrl}reservation`;
 
   static async postComment(obj) {
     const commentUrl = `${Api.commentsUrl}`;
@@ -18,6 +22,17 @@ export default class Api {
     const commentUrl = `${Api.commentsUrl}?item_id=${id}`;
     const result = await axios.get(commentUrl);
     Api.commentsData = result.data;
+  }
+
+  static async postReservation(obj) {
+    const reservationUrl = `${Api.reservationsUrl}`;
+    await axios.post(reservationUrl, obj);
+  }
+
+  static async getReservations(id) {
+    const reservationUrl = `${Api.reservationUrl}?item_id=${id}`;
+    const result = await axios.get(reservationUrl);
+    Api.reservationsData = result.data;
   }
 
   static createApp() {
