@@ -1,11 +1,31 @@
 import './style.css';
+<<<<<<< Updated upstream
 import Api from './api';
 import Comment from './comment';
+=======
+import { layout, render } from './layout';
+import { getlist1, getpokeinfo } from './pokemon-list';
+import Pokemon from './pokemon';
+>>>>>>> Stashed changes
 
-const Pokedex = require('pokeapi-js-wrapper');
+const body = document.getElementById('body');
+body.innerHTML = layout();
 
-const P = new Pokedex.Pokedex();
+async function pokelist(num) {
+// async function pokelist() {
+  // const list = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise'];
+  const list = await getlist1(num, 0);
+  list.results.forEach(async (element) => {
+  // list.forEach(async (element) => {
+    const info = await getpokeinfo(element.name);
+    const pokeimage = info.sprites.other.dream_world.front_default;
+    const pokemon = new Pokemon(info.id, info.name, 0, pokeimage);
+    console.log(pokemon);
+    render(pokemon);
+  });
+}
 
+<<<<<<< Updated upstream
 // let list;
 
 // (async () => {
@@ -37,3 +57,6 @@ const viewComments = async () => {
 };
 
 viewComments();
+=======
+pokelist(100);
+>>>>>>> Stashed changes
