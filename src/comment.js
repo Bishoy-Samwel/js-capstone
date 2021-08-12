@@ -6,8 +6,8 @@ export default class Comment {
     const usernameInput = document.createElement('input');
     const commentInput = document.createElement('input');
     const commentBtn = document.createElement('button');
-    usernameInput.setAttribute('placeholder','username');
-    commentInput.setAttribute('placeholder','write your comment here...');
+    usernameInput.setAttribute('placeholder', 'username');
+    commentInput.setAttribute('placeholder', 'write your comment here...');
     commentBtn.classList.add('red');
     usernameInput.type = 'text';
     commentInput.type = 'text';
