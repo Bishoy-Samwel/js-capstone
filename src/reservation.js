@@ -35,13 +35,4 @@ export default class Reserve {
     const p = document.createElement('p');
     p.innerHTML = `${obj.date_start} ${obj.date_end}: ${obj.username}`;
     return p;
-  }
-
-{
-    const div = document.createElement('div');
-    await Api.getComments(item_id);
-    Api.commentsData.forEach((obj) => {
-      div.append(Comment.createComment(obj));
-    });
-    return div;
 }
