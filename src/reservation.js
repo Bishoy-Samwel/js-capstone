@@ -26,13 +26,13 @@ export default class Reserve {
       const dateStart = inputs[1].value;
       const dateEnd = inputs[2].value;
       const obj = { item_id: '333', username, date_start: dateStart, date_end: dateEnd};
-    };
+    }
       console.log(obj);
       Api.postReserve(obj);
     });
   }
-
-  static createReserve(obj) {
+,
+  static createReserve(obj) ;{
     const p = document.createElement('p');
     p.innerHTML = `${obj.date_start} ${obj.date_end}: ${obj.username}`;
     return p;

@@ -6,7 +6,7 @@ export default class Api {
   static baseUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${Api.apiKey}/`;
 
   static commentsData = [];
-  
+
   static reservationsData = [];
 
   static commentsUrl = `${Api.baseUrl}comments`;
