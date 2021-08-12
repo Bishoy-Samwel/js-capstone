@@ -10,7 +10,7 @@
     "sourceType": "module"
   },
   "module.exports": {
-  "extends": ["airbnb-base"],
+    "extends": ["airbnb-base", "eslint:recommended"],
   "rules": {
     "no-console": "off",
     "no-shadow": "off",
