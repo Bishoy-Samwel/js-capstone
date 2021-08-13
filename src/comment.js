@@ -13,19 +13,15 @@ export default class Comment {
     usernameInput.type = 'text';
     commentInput.type = 'text';
     commentBtn.innerHTML = 'Comment';
-    form.append(usernameInput, commentInput, commentBtn);
-    return form;
-  }
-
-  static manageEvents() {
-    document.querySelector('#comment-btn').addEventListener('click', (event) => {
-      event.preventDefault();
-      const inputs = document.querySelectorAll('input[type="text"]');
-      const username = inputs[0].value;
-      const comment = inputs[1].value;
+    commentBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const username = usernameInput.value;
+      const comment = commentInput.value;
       const obj = { item_id: '333', username, comment };
       Api.postComment(obj);
     });
+    form.append(usernameInput, commentInput, commentBtn);
+    return form;
   }
 
   static createComment(obj) {
@@ -34,9 +30,9 @@ export default class Comment {
     return p;
   }
 
-  static async loadComments(item_id = '333') {
+  static async loadComments(itemId) {
     const div = document.createElement('div');
-    await Api.getComments(item_id);
+    await Api.getComments(itemId);
     Api.commentsData.forEach((obj) => {
       div.append(Comment.createComment(obj));
     });
