@@ -1,5 +1,5 @@
 import './style.css';
-import { layout, render } from './layout';
+import { layout, render, manageEvents } from './layout';
 import { getlist1, getpokeinfo } from './pokemon-list';
 import Pokemon from './pokemon';
 
@@ -15,8 +15,9 @@ async function pokelist(num) {
     const info = await getpokeinfo(element.name);
     const pokeimage = info.sprites.other.dream_world.front_default;
     const pokemon = new Pokemon(info.id, info.name, 0, pokeimage);
-    console.log(pokemon);
     render(pokemon);
   });
 }
-pokelist(100);
+
+pokelist(5);
+manageEvents();

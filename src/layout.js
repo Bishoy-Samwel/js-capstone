@@ -1,3 +1,8 @@
+import Comment from './comment';
+import Reserve from './reserve';
+
+import Modal from './modal';
+
 const layout = () => `
 <header>
       <nav class="navbar">
@@ -31,8 +36,51 @@ function render(pokemon) {
           <img src="${pokemon.image}" alt="" class="poke-img" width="200px" height="200px">
           <span>${pokemon.name}</span><i class="fas fa-heart"></i>
           <span>${pokemon.likes} likes</span>
-          <button id="${pokemon.id}-combtn">Comments</button>
-          <button id="${pokemon.id}-resbtn">Reservations</button>`;
+          <button id="${pokemon.id}-combtn" class="comment-btn">Comments</button>
+          <button id="${pokemon.id}-resbtn" class="reserve-btn">Reservations</button>`;
 }
 
-export { render, layout };
+const manageEvents = () => {
+  document.querySelector('#pokelist').onclick = (event) => {
+    if (event.target.classList.value.includes('comment-btn')) {
+      console.log('c');
+      const pokeId = event.target.parentElement.id;
+      // eslint-disable-next-line no-use-before-define
+      modalContent(pokeId, 'comment');
+      // we have id
+      // we show the window that has details, comments, commentForm
+    } else if (event.target.classList.value.includes('reserve-btn')) {
+      const pokeId = event.target.parentElement.id;
+      // eslint-disable-next-line no-use-before-define
+      modalContent(pokeId, 'reserve');
+    }
+  };
+};
+
+const modalContent = async (id, requestType) => {
+  const modal = new Modal();
+  if (requestType === 'comment') {
+    let commentsDiv = '';
+    try {
+      commentsDiv = await Comment.loadComments(Number(id));
+    } catch (error) {
+      console.error(error);
+    }
+    const form = Comment.generateForm(id);
+    modal.create([form, commentsDiv]);
+    modal.pop(modal.boxDiv);
+  } else if (requestType === 'reserve') {
+    let reservesDiv = '';
+    try {
+      reservesDiv = await Reserve.loadReserves(Number(id));
+    } catch (error) {
+      console.error(error);
+    }
+    const form = Reserve.generateForm(id);
+    modal.create([form, reservesDiv]);
+    modal.pop(modal.boxDiv)
+  }
+  document.querySelector('body').append(modal.boxDiv);
+};
+
+export { render, layout, manageEvents };
