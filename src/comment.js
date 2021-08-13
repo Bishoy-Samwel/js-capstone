@@ -1,7 +1,7 @@
 import Api from './api';
 
 export default class Comment {
-  static generateForm() {
+  static generateForm(id) {
     const form = document.createElement('form');
     const usernameInput = document.createElement('input');
     const commentInput = document.createElement('input');
@@ -17,8 +17,11 @@ export default class Comment {
       e.preventDefault();
       const username = usernameInput.value;
       const comment = commentInput.value;
-      const obj = { item_id: '333', username, comment };
+      const obj = { item_id: id, username, comment };
+      console.log(obj);
       Api.postComment(obj);
+      const commentsDiv = document.querySelector('commentsDiv');
+      commentsDiv.append(Api.createComment(obj));
     });
     form.append(usernameInput, commentInput, commentBtn);
     return form;
@@ -30,12 +33,24 @@ export default class Comment {
     return p;
   }
 
+  static CreateCommentsDiv() {
+    let commentsDiv = document.querySelector('commentsDiv');
+    if (!commentsDiv) {
+      commentsDiv = document.createElement('div');
+      commentsDiv.setAttribute('id', 'commentsDiv');
+    }
+    return commentsDiv;
+  }
+  // user clicks
+  // append new comment to the div
+  // if the user refresh => clear the div and load the comments
+
   static async loadComments(itemId) {
-    const div = document.createElement('div');
+    const commentsDiv = Comment.CreateCommentsDiv();
     await Api.getComments(itemId);
     Api.commentsData.forEach((obj) => {
-      div.append(Comment.createComment(obj));
+      commentsDiv.append(Comment.createComment(obj));
     });
-    return div;
+    return commentsDiv;
   }
 }
