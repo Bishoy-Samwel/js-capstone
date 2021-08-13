@@ -1,10 +1,11 @@
 import './style.css';
-import Api from './api';
+// import Api from './api';
 import Comment from './comment';
+import Modal from './modal';
 
-const Pokedex = require('pokeapi-js-wrapper');
+// const Pokedex = require('pokeapi-js-wrapper');
 
-const P = new Pokedex.Pokedex();
+// const P = new Pokedex.Pokedex();
 
 // let list;
 
@@ -29,7 +30,11 @@ const P = new Pokedex.Pokedex();
 
 // loadComments('item1');
 
-document.querySelector('body').append(Comment.generateForm());
+const modal = new Modal();
+modal.create(Comment.generateForm());
+document.querySelector('body').append(modal.boxDiv);
+document.querySelector('body').append(modal.showBtn);
+
 Comment.manageEvents();
 
 const viewComments = async () => {
@@ -37,3 +42,5 @@ const viewComments = async () => {
 };
 
 viewComments();
+
+document.querySelector('button').addEventListener('click', console.log('clicked'));
