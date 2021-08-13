@@ -6,6 +6,7 @@ export default class Comment {
     const usernameInput = document.createElement('input');
     const commentInput = document.createElement('input');
     const commentBtn = document.createElement('button');
+    commentBtn.setAttribute('id', 'comment-btn');
     usernameInput.setAttribute('placeholder', 'username');
     commentInput.setAttribute('placeholder', 'write your comment here...');
     commentBtn.classList.add('red');
@@ -17,19 +18,14 @@ export default class Comment {
   }
 
   static manageEvents() {
-    document.querySelector('button').addEventListener('click', (event) => {
+    document.querySelector('#comment-btn').addEventListener('click', (event) => {
       event.preventDefault();
       const inputs = document.querySelectorAll('input[type="text"]');
       const username = inputs[0].value;
       const comment = inputs[1].value;
       const obj = { item_id: '333', username, comment };
-      console.log(obj);
       Api.postComment(obj);
     });
-  }
-
-  static addComment() {
-
   }
 
   static createComment(obj) {
