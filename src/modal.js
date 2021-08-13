@@ -3,7 +3,6 @@ export default class Modal {
 
   // To control the window
   pop = (box) => {
-    console.log('hi');
     if (this.displayed === null) {
       box.style.display = 'block';
       this.displayed = true;

@@ -52,11 +52,16 @@ const manageEvents = () => {
   };
 };
 
-const modalContent = (id, requestType) => {
+const modalContent = async (id, requestType) => {
   const modal = new Modal();
   if (requestType === 'comment') {
-    const commentsDiv = Comment.loadComments(Number(id));
-    const form = Comment.generateForm();
+    let commentsDiv = '';
+    try {
+      commentsDiv = await Comment.loadComments(Number(id));
+    } catch (error) {
+      console.error(error);
+    }
+    const form = Comment.generateForm(id);
     modal.create([form, commentsDiv]);
     modal.pop(modal.boxDiv);
   } else if (requestType === 'reseve') {
