@@ -2,7 +2,7 @@ import './style.css';
 import { layout, render, manageEvents } from './layout';
 import Pokemon from './pokemon';
 import { fetchLikes, pokelike, thispokelikes } from './likes';
-import { displaycounter, displayedpokemons } from './pokecounter';
+import displaycounter from './pokecounter';
 
 // import Api from './api';
 const body = document.getElementById('body');
@@ -22,9 +22,9 @@ async function pokelist(num) {
       likebtn.classList.add('liked');
       window.location.reload();
     });
-    await displaycounter(await displayedpokemons());
+    await displaycounter();
   });
 }
 
-pokelist(10);
+pokelist(9);
 manageEvents();
