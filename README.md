@@ -8,16 +8,17 @@ This project is been made with HTML5, CSS3, JS and Webpack, following the guidel
 ---
 
 # js-capstone
-
+> This project we post and get data using Pokemon API.
 ---
+In the project are use Pokeapi API for the data about the Pokémon world and Involvement API to record the different user interactions (likes, comments and reservations) provided from Microverse.
 
 > This project is part of Microverse's 2.0 curriculum. and it's been built with Html5 and CSS3 and JS and webpack.
+> This webapp list the pokemons
 
 🤍 Preview Image🤍
 
-Desktop version      | Mobile version
--------------------- | ----------------------
-![Desktop]()|![Mobile]()
+![Desktop](![image](https://user-images.githubusercontent.com/29541335/129453648-c55f9dcb-99b2-4e86-ac0a-0b446cb04778.png)
+)|![Mobile]()
 
 ---
 
