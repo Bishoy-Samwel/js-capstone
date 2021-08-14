@@ -17,7 +17,7 @@ In the project are use Pokeapi API for the data about the Pokémon world and Inv
 
 🤍 Preview Image🤍
 
-![Desktop](https://user-images.githubusercontent.com/29541335/129453648-c55f9dcb-99b2-4e86-ac0a-0b446cb04778.png)
+![Desktop](https://user-images.githubusercontent.com/29541335/129454753-00e9be56-c55b-4b37-9c1e-09628cd3bae2.png)
 
 ---
 
