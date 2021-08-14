@@ -1,4 +1,5 @@
 import Comment from './comment';
+import Reserve from './reserve';
 import Modal from './modal';
 import Pokemon from './pokemon';
 
@@ -50,7 +51,9 @@ const manageEvents = () => {
       // we have id
       // we show the window that has details, comments, commentForm
     } else if (event.target.classList.value.includes('reserve-btn')) {
-      //
+      const pokeId = event.target.parentElement.id;
+      // eslint-disable-next-line no-use-before-define
+      modalContent(pokeId, 'reserve');
     }
   };
 };
@@ -72,6 +75,7 @@ const modalContent = async (id, requestType) => {
   const info = await Pokemon.getpokeinfo(id);
   const modal = new Modal();
   let commentsP = '';
+  let reservesP = '';
   const imgDiv = document.createElement('div');
   imgDiv.innerHTML = `<img src=${info.sprites.other.dream_world.front_default} alt=""class="poke-img" width="200px" height="200px">`;
   if (requestType === 'comment') {
@@ -87,8 +91,20 @@ const modalContent = async (id, requestType) => {
     const form = Comment.generateForm(id);
     modal.create([commentsP, imgDiv, await getDetailsDiv(id), form, commentsDiv]);
     modal.pop(modal.boxDiv);
-  } else if (requestType === 'reseve') {
-    //
+  } else if (requestType === 'reserve') {
+    let reserveDiv = '';
+    try {
+      reserveDiv = await Reserve.loadReserves(id);
+      const n = Reserve.numOfRserves;
+      reservesP = document.createElement('p');
+      reservesP.innerHTML = `<b>Reserves: </b> ${n}`;
+    } catch (error) {
+      console.error(error);
+    }
+    const form = Reserve.generateForm(id);
+    console.log(form.childNodes);
+    modal.create([reservesP, imgDiv, await getDetailsDiv(id), form, reserveDiv]);
+    modal.pop(modal.boxDiv);
   }
   document.querySelector('body').append(modal.boxDiv);
 };
