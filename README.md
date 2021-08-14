@@ -35,7 +35,7 @@ In the project are use Pokeapi API for the data about the Pokémon world and Inv
 # 🤍 Live Demo 🤍
 ---
 
-🤍 [Demo](https://bishoy-samwel.github.io/js-capstone/dist/) 
+🤍 [Demo](https://bishoy-samwel.github.io/js-capstone) 
 
 ---
 
