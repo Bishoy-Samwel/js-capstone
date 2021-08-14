@@ -17,14 +17,12 @@ export default class Reserve {
     endDateInput.type = 'date';
 
     reserveBtn.innerHTML = 'Reserve';
-    form.append(usernameInput, startdateInput, endDateInput, reserveBtn);
-    return form;
 
     reserveBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const username = usernameInput.value;
       const dateStart = startdateInput.value;
-      const date_end = endDateInput.value;
+      const dateEnd = endDateInput.value;
       const obj = {
         item_id: id, username, date_start: dateStart, date_end: dateEnd,
       };
@@ -33,7 +31,8 @@ export default class Reserve {
       const reservesDiv = document.querySelector('reservesDiv');
       reservesDiv.append(Api.createReserve(obj));
     });
-    form.append(usernameInput, reserveInput, reserveBtn);
+    form.append(usernameInput, startdateInput, endDateInput, reserveBtn);
+
     return form;
   }
 
