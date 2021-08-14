@@ -11,7 +11,7 @@ export default class Api {
 
   static commentsUrl = `${Api.baseUrl}comments`;
 
-  static reservationsUrl = `${Api.baseUrl}reservation`;
+  static reservationsUrl = `${Api.baseUrl}reservations`;
 
   static async postComment(obj) {
     const commentUrl = `${Api.commentsUrl}`;
@@ -24,15 +24,17 @@ export default class Api {
     Api.commentsData = result.data;
   }
 
-  static async postReservation(obj) {
+  static async postReserve(obj) {
     const reservationUrl = `${Api.reservationsUrl}`;
     await axios.post(reservationUrl, obj);
   }
 
-  static async getReservations(id) {
+  static async getReserves(id) {
     const reservationsUrl = `${Api.reservationsUrl}?item_id=${id}`;
     const result = await axios.get(reservationsUrl);
+    console.log(result.data);
     Api.reservationsData = result.data;
+    return result.data;
   }
 
   static createApp() {

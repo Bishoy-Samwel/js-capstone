@@ -17,12 +17,14 @@ export default class Comment {
     usernameInput.type = 'text';
     commentInput.type = 'text';
     commentBtn.innerHTML = 'Comment';
+    usernameInput.setAttribute('placeholder', 'user name');
+    commentInput.setAttribute('placeholder', 'Write your Comment');
+    commentInput.classList.add('red');
     commentBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const username = usernameInput.value;
       const comment = commentInput.value;
       let obj = { item_id: id, username, comment };
-      console.log(obj);
       Api.postComment(obj);
       obj = { creation_date: Comment.generateDate(), username, comment };
       Comment.commentsDiv.append(Comment.createComment(obj));
@@ -53,7 +55,6 @@ export default class Comment {
       Comment.commentsDiv.append(Comment.createComment(obj));
     });
     this.numOfComments = Api.commentsData.length;
-    console.log(Comment.numOfComments);
     return Comment.commentsDiv;
   }
 
