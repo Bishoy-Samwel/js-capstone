@@ -6,9 +6,6 @@ export default class Pokemon {
     this.name = info.name;
     this.likes = 0;
     this.image = info.sprites.other.dream_world.front_default;
-    this.height = info.height;
-    this.weight = info.weight;
-    this.sname = info.species.name;
   }
 
   static async getlist(limit, offset) {
