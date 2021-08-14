@@ -12,7 +12,6 @@ async function pokelist(num) {
   list.results.forEach(async (element) => {
     const info = await Pokemon.getpokeinfo(element.name);
     const thislikes = await thispokelikes(likes, info.id);
-    const pokeimage = info.sprites.other.dream_world.front_default;
     const pokemon = new Pokemon(info, thislikes);
     render(pokemon);
     const likebtn = document.getElementById(`${pokemon.id}-like`);
