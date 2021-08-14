@@ -1,6 +1,10 @@
 import Api from './api';
 
 export default class Comment {
+  static commentsDiv = Comment.CreateCommentsDiv();
+
+  static numOfComments = 0;
+
   static generateForm(id) {
     const form = document.createElement('form');
     const usernameInput = document.createElement('input');
@@ -17,11 +21,11 @@ export default class Comment {
       e.preventDefault();
       const username = usernameInput.value;
       const comment = commentInput.value;
-      const obj = { item_id: id, username, comment };
+      let obj = { item_id: id, username, comment };
       console.log(obj);
       Api.postComment(obj);
-      const commentsDiv = document.querySelector('commentsDiv');
-      commentsDiv.append(Api.createComment(obj));
+      obj = { creation_date: Comment.generateDate(), username, comment };
+      Comment.commentsDiv.append(Comment.createComment(obj));
     });
     form.append(usernameInput, commentInput, commentBtn);
     return form;
@@ -34,23 +38,31 @@ export default class Comment {
   }
 
   static CreateCommentsDiv() {
-    let commentsDiv = document.querySelector('commentsDiv');
-    if (!commentsDiv) {
-      commentsDiv = document.createElement('div');
-      commentsDiv.setAttribute('id', 'commentsDiv');
+    Comment.commentsDiv = document.querySelector('#commentsDiv');
+    if (!Comment.commentsDiv) {
+      Comment.commentsDiv = document.createElement('div');
+      Comment.commentsDiv.setAttribute('id', 'commentsDiv');
     }
-    return commentsDiv;
+    return Comment.commentsDiv;
   }
-  // user clicks
-  // append new comment to the div
-  // if the user refresh => clear the div and load the comments
 
   static async loadComments(itemId) {
-    const commentsDiv = Comment.CreateCommentsDiv();
+    Comment.commentsDiv.innerHTML = '';
     await Api.getComments(itemId);
     Api.commentsData.forEach((obj) => {
-      commentsDiv.append(Comment.createComment(obj));
+      Comment.commentsDiv.append(Comment.createComment(obj));
     });
-    return commentsDiv;
+    this.numOfComments = Api.commentsData.length;
+    console.log(Comment.numOfComments);
+    return Comment.commentsDiv;
+  }
+
+  static generateDate() {
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    today = `${yyyy}-${dd}-${mm}`;
+    return today;
   }
 }
