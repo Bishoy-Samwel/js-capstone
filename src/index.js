@@ -1,5 +1,5 @@
 import './style.css';
-import { layout, render } from './layout';
+import { layout, render, manageEvents } from './layout';
 import { getlist1, getpokeinfo } from './pokemon-list';
 import Pokemon from './pokemon';
 import { fetchLikes, pokelike, thispokelikes } from './likes';
@@ -29,3 +29,4 @@ async function pokelist(num) {
 }
 
 pokelist(9);
+manageEvents();

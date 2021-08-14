@@ -1,35 +1,30 @@
 import Api from './api';
 
 export default class Comment {
-  static generateForm() {
+  static generateForm(id) {
     const form = document.createElement('form');
     const usernameInput = document.createElement('input');
     const commentInput = document.createElement('input');
     const commentBtn = document.createElement('button');
+    commentBtn.setAttribute('id', 'comment-btn');
     usernameInput.setAttribute('placeholder', 'username');
     commentInput.setAttribute('placeholder', 'write your comment here...');
     commentBtn.classList.add('red');
     usernameInput.type = 'text';
     commentInput.type = 'text';
     commentBtn.innerHTML = 'Comment';
-    form.append(usernameInput, commentInput, commentBtn);
-    return form;
-  }
-
-  static manageEvents() {
-    document.querySelector('button').addEventListener('click', (event) => {
-      event.preventDefault();
-      const inputs = document.querySelectorAll('input[type="text"]');
-      const username = inputs[0].value;
-      const comment = inputs[1].value;
-      const obj = { item_id: '333', username, comment };
+    commentBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const username = usernameInput.value;
+      const comment = commentInput.value;
+      const obj = { item_id: id, username, comment };
       console.log(obj);
       Api.postComment(obj);
+      const commentsDiv = document.querySelector('commentsDiv');
+      commentsDiv.append(Api.createComment(obj));
     });
-  }
-
-  static addComment() {
-
+    form.append(usernameInput, commentInput, commentBtn);
+    return form;
   }
 
   static createComment(obj) {
@@ -38,12 +33,24 @@ export default class Comment {
     return p;
   }
 
-  static async loadComments(item_id = '333') {
-    const div = document.createElement('div');
-    await Api.getComments(item_id);
+  static CreateCommentsDiv() {
+    let commentsDiv = document.querySelector('commentsDiv');
+    if (!commentsDiv) {
+      commentsDiv = document.createElement('div');
+      commentsDiv.setAttribute('id', 'commentsDiv');
+    }
+    return commentsDiv;
+  }
+  // user clicks
+  // append new comment to the div
+  // if the user refresh => clear the div and load the comments
+
+  static async loadComments(itemId) {
+    const commentsDiv = Comment.CreateCommentsDiv();
+    await Api.getComments(itemId);
     Api.commentsData.forEach((obj) => {
-      div.append(Comment.createComment(obj));
+      commentsDiv.append(Comment.createComment(obj));
     });
-    return div;
+    return commentsDiv;
   }
 }
