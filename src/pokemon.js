@@ -1,10 +1,10 @@
 export default class Pokemon {
   static apiBase = 'https://pokeapi.co/api/v2/';
 
-  constructor(info) {
+  constructor(info, likes) {
     this.id = info.id;
     this.name = info.name;
-    this.likes = 0;
+    this.likes = likes;
     this.image = info.sprites.other.dream_world.front_default;
   }
 
