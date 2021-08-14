@@ -42,6 +42,10 @@ header {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.active {
+  border-bottom: 1px solid red;
+}
+
 .pokemon {
   display: flex;
   flex-direction: column;
