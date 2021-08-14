@@ -7,7 +7,7 @@ const layout = () => `
       <nav class="navbar">
         <a href="./"><img src="/src/pokeballs.png" alt="Icons made by Darius Dan" class="logo"></a>
         <ul class="nav">
-          <li class="active"><a href="#Pokemons">Pokemons</a></li>
+          <li class="active"><a href="#Pokemons" id="pokenav">Pokemons </a></li>
           <li><a href="#Evolutions">Evolutions</a></li>
           <li><a href="#Gym">Gym</a></li>
         </ul>
