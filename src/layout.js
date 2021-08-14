@@ -4,9 +4,9 @@ import Modal from './modal';
 const layout = () => `
 <header>
       <nav class="navbar">
-        <a href="./"><img src="/src/img/pokeballs.png" alt="Icons made by Darius Dan" class="logo"></a>
+        <a href="./"><img src="/src/pokeballs.png" alt="Icons made by Darius Dan" class="logo"></a>
         <ul class="nav">
-          <li><a href="#Pokemons">Pokemons</a></li>
+          <li class="active"><a href="#Pokemons">Pokemons</a></li>
           <li><a href="#Evolutions">Evolutions</a></li>
           <li><a href="#Gym">Gym</a></li>
         </ul>
@@ -31,8 +31,10 @@ function render(pokemon) {
   const poke = document.getElementById(pokemon.id);
   poke.classList.add('pokemon');
   poke.innerHTML = `
+  <span>${pokemon.id}</span>
           <img src="${pokemon.image}" alt="" class="poke-img" width="200px" height="200px">
-          <span>${pokemon.name}</span><i class="fas fa-heart"></i>
+          <div><span>${pokemon.name}</span></div>
+          <i class="fas fa-heart" id="${pokemon.id}-like"></i>
           <span>${pokemon.likes} likes</span>
           <button id="${pokemon.id}-combtn" class="comment-btn">Comments</button>
           <button id="${pokemon.id}-resbtn" class="reserve-btn">Reservations</button>`;
