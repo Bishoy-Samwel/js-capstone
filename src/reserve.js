@@ -54,11 +54,11 @@ export default class Reserve {
 
   static async loadReserves(itemId) {
     Reserve.reservesDiv.innerHTML = '';
-    const result = await Api.getReserves(itemId);
-    result.forEach((obj) => {
+    const data = await Api.getReserves(itemId);
+    data.forEach((obj) => {
       Reserve.reservesDiv.append(Reserve.createReserve(obj));
     });
-    this.numOfReserves = result.length;
+    this.numOfReserves = Api.reservesData.length;
     return Reserve.reservesDiv;
   }
 }

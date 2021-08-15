@@ -95,14 +95,13 @@ const modalContent = async (id, requestType) => {
     let reserveDiv = '';
     try {
       reserveDiv = await Reserve.loadReserves(id);
-      const n = Reserve.numOfRserves;
+      const n = Reserve.numOfReserves;
       reservesP = document.createElement('p');
       reservesP.innerHTML = `<b>Reserves: </b> ${n}`;
     } catch (error) {
       console.error(error);
     }
     const form = Reserve.generateForm(id);
-    console.log(form.childNodes);
     modal.create([reservesP, imgDiv, await getDetailsDiv(id), form, reserveDiv]);
     modal.pop(modal.boxDiv);
   }

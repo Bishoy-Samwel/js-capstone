@@ -7,7 +7,7 @@ export default class Api {
 
   static commentsData = [];
 
-  static reservationsData = [];
+  static reservesData = [];
 
   static commentsUrl = `${Api.baseUrl}comments`;
 
@@ -32,9 +32,8 @@ export default class Api {
   static async getReserves(id) {
     const reservationsUrl = `${Api.reservationsUrl}?item_id=${id}`;
     const result = await axios.get(reservationsUrl);
-    console.log(result.data);
-    Api.reservationsData = result.data;
-    return result.data;
+    Api.reservesData = result.data;
+    return Api.reservesData;
   }
 
   static createApp() {
